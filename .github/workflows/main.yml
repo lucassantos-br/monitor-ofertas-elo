@@ -1,0 +1,36 @@
+name: Monitoramento Diario Elo
+
+on:
+  schedule:
+    - cron: '0 11 * * 1-5' # Roda às 08:00 (BRT) de Seg a Sex
+  workflow_dispatch: 
+
+jobs:
+  run-bot:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Baixar o código do repositório
+        uses: actions/checkout@v4
+
+      - name: Configurar o Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Instalar dependências
+        run: |
+          pip install -r requirements.txt
+          playwright install chromium
+
+      - name: Executar o Bot
+        env:
+          SENHA_OUTLOOK: ${{ secrets.SENHA_OUTLOOK }}
+        run: python bot.py
+
+      - name: Salvar novo CSV no repositório
+        run: |
+          git config --global user.name 'Robo Automacao'
+          git config --global user.email 'robo@automacao.com'
+          git add relatorio_elo_completo.csv
+          git commit -m "🤖 Atualizando base de benefícios" || echo "Nenhuma mudança no CSV"
+          git push
