@@ -54,10 +54,44 @@ def extrair_validade_interna(pagina, url_completa):
     except Exception:
         return "Erro ao carregar link"
 
+def criar_tabela_html(df, cor_fundo):
+    if df.empty:
+        return ""
+    
+    html = f"""
+    <table style="width: 100%; border-collapse: collapse; font-family: Arial, sans-serif; font-size: 13px; text-align: left; margin-bottom: 20px;">
+        <thead>
+            <tr style="background-color: {cor_fundo}; color: #ffffff;">
+                <th style="padding: 8px; border: 1px solid #dddddd;">Categoria</th>
+                <th style="padding: 8px; border: 1px solid #dddddd;">Parceiro</th>
+                <th style="padding: 8px; border: 1px solid #dddddd;">Oferta</th>
+                <th style="padding: 8px; border: 1px solid #dddddd;">Validade</th>
+                <th style="padding: 8px; border: 1px solid #dddddd;">Status</th>
+                <th style="padding: 8px; border: 1px solid #dddddd;">Ação</th>
+            </tr>
+        </thead>
+        <tbody>
+    """
+    for _, row in df.iterrows():
+        html += f"""
+            <tr style="background-color: #f9f9f9; color: #333333;">
+                <td style="padding: 8px; border: 1px solid #dddddd;">{row.get('Categoria', '')}</td>
+                <td style="padding: 8px; border: 1px solid #dddddd;"><strong>{row.get('Parceiro', '')}</strong></td>
+                <td style="padding: 8px; border: 1px solid #dddddd;">{row.get('Benefício / Oferta', '')}</td>
+                <td style="padding: 8px; border: 1px solid #dddddd;">{row.get('Validade', '-')}</td>
+                <td style="padding: 8px; border: 1px solid #dddddd;">{row.get('Status', '-')}</td>
+                <td style="padding: 8px; border: 1px solid #dddddd;"><a href="{row.get('Link', '#')}" style="color: #005A9C; text-decoration: none;">Acessar Link</a></td>
+            </tr>
+        """
+    html += """
+        </tbody>
+    </table>
+    """
+    return html
+
 def enviar_notificacao_outlook(assunto, corpo_html, caminho_anexo=None):
-    """Envia o e-mail de forma segura e suporta arquivo em anexo"""
     email_remetente = "lucassantosdasilva697@gmail.com"
-    email_destinatario = "samuel.aiedo@verdecard.com.br"
+    email_destinatario = "samuel.aiedo@verdecard.com.br, mathias@verdecard.com.br, alexia@verdecard.com.br, weslei@verdecard.com.br"
     
     senha = os.environ.get("SENHA_OUTLOOK") 
     
@@ -74,7 +108,6 @@ def enviar_notificacao_outlook(assunto, corpo_html, caminho_anexo=None):
     msg['Subject'] = assunto
     msg.attach(MIMEText(corpo_html, 'html'))
     
-    # --- BLOCO QUE PREPARA O ARQUIVO CSV EM ANEXO ---
     if caminho_anexo and os.path.exists(caminho_anexo):
         with open(caminho_anexo, "rb") as anexo:
             part = MIMEBase("application", "octet-stream")
@@ -90,7 +123,7 @@ def enviar_notificacao_outlook(assunto, corpo_html, caminho_anexo=None):
         server.login(email_remetente, senha)
         server.send_message(msg)
         server.quit()
-        print("✉️ E-mail enviado com sucesso!")
+        print("✉️ E-mail enviado com sucesso para a equipe!")
     except Exception as e:
         print(f"❌ Erro ao enviar e-mail: {e}")
 
@@ -230,25 +263,21 @@ def monitorar_beneficios_elo():
             <html>
             <body style="font-family: Arial, sans-serif; color: #333;">
                 <h2 style="color: #005A9C;">🚨 Atualização nas Ofertas Elo</h2>
-                <p>O robô detectou alterações no portal de benefícios hoje:</p>
+                <p>O robô detectou as seguintes alterações no portal de benefícios hoje:</p>
             """
             
             if adicionados:
                 df_hoje.loc[df_hoje['Link'].isin(adicionados), 'Movimentação'] = "Novo Benefício"
                 novos_df = df_hoje[df_hoje['Link'].isin(adicionados)]
-                html_email += f"<h3 style='color: green;'>➕ {len(adicionados)} NOVO(S) BENEFÍCIO(S):</h3><ul>"
-                for _, row in novos_df.iterrows():
-                    html_email += f"<li><strong>{row['Parceiro']}</strong>: {row['Benefício / Oferta']}</li>"
-                html_email += "</ul>"
+                html_email += f"<h3 style='color: #4CAF50; margin-top: 25px;'>➕ {len(adicionados)} NOVO(S) BENEFÍCIO(S) ADICIONADO(S):</h3>"
+                html_email += criar_tabela_html(novos_df, "#4CAF50")
                     
             if removidos:
                 removidos_df = df_ontem[df_ontem['Link'].isin(removidos)]
-                html_email += f"<h3 style='color: red;'>➖ {len(removidos)} BENEFÍCIO(S) REMOVIDO(S):</h3><ul>"
-                for _, row in removidos_df.iterrows():
-                    html_email += f"<li><del><strong>{row['Parceiro']}</strong>: {row['Benefício / Oferta']}</del></li>"
-                html_email += "</ul>"
+                html_email += f"<h3 style='color: #F44336; margin-top: 25px;'>➖ {len(removidos)} BENEFÍCIO(S) REMOVIDO(S):</h3>"
+                html_email += criar_tabela_html(removidos_df, "#F44336")
                 
-            html_email += "<br><p><em>A planilha completa e atualizada segue em anexo.</em></p></body></html>"
+            html_email += "<br><p><em>A planilha completa e atualizada com todos os dados segue em anexo.</em></p></body></html>"
             
         else:
             print("Nenhum benefício foi adicionado ou removido. Preparando e-mail de status...")
@@ -257,8 +286,8 @@ def monitorar_beneficios_elo():
             <html>
             <body style="font-family: Arial, sans-serif; color: #333;">
                 <h2 style="color: #005A9C;">📊 Status Diário: Ofertas Elo</h2>
-                <p>A varredura foi concluída com sucesso. Nenhuma mudança foi detectada no portal de benefícios hoje.</p>
-                <p>A base de dados completa segue em anexo para consulta.</p>
+                <p>A varredura foi concluída com sucesso. Nenhuma mudança (adição ou remoção) foi detectada no portal de benefícios hoje.</p>
+                <p>A base de dados completa segue em anexo para consulta da equipe.</p>
             </body>
             </html>
             """
@@ -277,13 +306,11 @@ def monitorar_beneficios_elo():
         </html>
         """
 
-    # --- PASSO 1: Salvar o arquivo CSV no servidor ---
     ordem_colunas = ['Categoria', 'Parceiro', 'Benefício / Oferta', 'Validade', 'Status', 'Movimentação', 'Link']
     df_hoje = df_hoje[ordem_colunas].sort_values(by="Parceiro").reset_index(drop=True)
     df_hoje.to_csv(nome_arquivo, index=False, encoding="utf-8-sig", sep=";")
     print("Sucesso! O relatório foi salvo localmente.")
 
-    # --- PASSO 2: Enviar o e-mail com o arquivo que acabamos de salvar ---
     enviar_notificacao_outlook(assunto=assunto_email, corpo_html=html_email, caminho_anexo=nome_arquivo)
 
 if __name__ == "__main__":
