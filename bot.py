@@ -91,7 +91,7 @@ def criar_tabela_html(df, cor_fundo):
 
 def enviar_notificacao_outlook(assunto, corpo_html, caminho_anexo=None):
     email_remetente = "lucassantosdasilva697@gmail.com"
-    email_destinatario = "samuel.aiedo@verdecard.com.br, mathias@verdecard.com.br, alexia@verdecard.com.br, weslei@verdecard.com.br"
+    email_destinatario = "samuel.aiedo@verdecard.com.br, weslei.nunes@verdecard.com.br, lucas.santossilva@verdecard.com.br"
     
     senha = os.environ.get("SENHA_OUTLOOK") 
     
