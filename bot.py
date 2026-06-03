@@ -7,6 +7,8 @@ from bs4 import BeautifulSoup
 import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
+from email.mime.base import MIMEBase
+from email import encoders
 
 def validar_status(texto_validade):
     padrao = re.search(r'(\d{2}/\d{2}/\d{2,4})', texto_validade)
@@ -52,12 +54,11 @@ def extrair_validade_interna(pagina, url_completa):
     except Exception:
         return "Erro ao carregar link"
 
-def enviar_notificacao_outlook(assunto, corpo_html):
-    """Envia o e-mail de forma segura puxando a senha do ambiente"""
-    email_remetente = "lucassantosdasilva697@gmail.com" # <--- ALTERE AQUI
-    email_destinatario = "samuel.aiedo@verdecard.com.br" # <--- ALTERE AQUI
+def enviar_notificacao_outlook(assunto, corpo_html, caminho_anexo=None):
+    """Envia o e-mail de forma segura e suporta arquivo em anexo"""
+    email_remetente = "lucassantosdasilva697@gmail.com"
+    email_destinatario = "samuel.aiedo@verdecard.com.br"
     
-    # Puxa a senha do cofre do GitHub
     senha = os.environ.get("SENHA_OUTLOOK") 
     
     if not senha:
@@ -73,13 +74,23 @@ def enviar_notificacao_outlook(assunto, corpo_html):
     msg['Subject'] = assunto
     msg.attach(MIMEText(corpo_html, 'html'))
     
+    # --- BLOCO QUE PREPARA O ARQUIVO CSV EM ANEXO ---
+    if caminho_anexo and os.path.exists(caminho_anexo):
+        with open(caminho_anexo, "rb") as anexo:
+            part = MIMEBase("application", "octet-stream")
+            part.set_payload(anexo.read())
+        encoders.encode_base64(part)
+        nome_arquivo_anexo = os.path.basename(caminho_anexo)
+        part.add_header("Content-Disposition", f"attachment; filename={nome_arquivo_anexo}")
+        msg.attach(part)
+    
     try:
         server = smtplib.SMTP(smtp_server, porta)
         server.starttls() 
         server.login(email_remetente, senha)
         server.send_message(msg)
         server.quit()
-        print("✉️ E-mail corporativo enviado com sucesso!")
+        print("✉️ E-mail enviado com sucesso!")
     except Exception as e:
         print(f"❌ Erro ao enviar e-mail: {e}")
 
@@ -191,7 +202,7 @@ def monitorar_beneficios_elo():
             
         navegador.close()
 
-    print("\n[Fase 3] Cruzando dados com a execução anterior...")
+    print("\n[Fase 3] Preparando arquivos e e-mails...")
     df_hoje = pd.DataFrame(ofertas_unicas)
     
     pasta_atual = os.path.dirname(os.path.abspath(__file__))
@@ -199,6 +210,9 @@ def monitorar_beneficios_elo():
     
     df_hoje['Movimentação'] = "Mantido"
     
+    assunto_email = ""
+    html_email = ""
+
     if os.path.exists(nome_arquivo):
         df_ontem = pd.read_csv(nome_arquivo, sep=";")
         
@@ -209,7 +223,8 @@ def monitorar_beneficios_elo():
         removidos = links_ontem - links_hoje
         
         if adicionados or removidos:
-            print("\n🚨 ALERTA: Mudanças detectadas no site da Elo!")
+            print("🚨 Mudanças detectadas! Montando alerta...")
+            assunto_email = "🚨 [Alerta Bot] Alterações nas Ofertas Elo"
             
             html_email = """
             <html>
@@ -233,20 +248,43 @@ def monitorar_beneficios_elo():
                     html_email += f"<li><del><strong>{row['Parceiro']}</strong>: {row['Benefício / Oferta']}</del></li>"
                 html_email += "</ul>"
                 
-            html_email += "<br><p><em>A planilha base foi atualizada no repositório.</em></p></body></html>"
+            html_email += "<br><p><em>A planilha completa e atualizada segue em anexo.</em></p></body></html>"
             
-            enviar_notificacao_outlook(assunto="[Alerta Bot] Alterações nas Ofertas Elo", corpo_html=html_email)
         else:
-            print("Nenhum benefício foi adicionado ou removido. (E-mail não enviado)")
+            print("Nenhum benefício foi adicionado ou removido. Preparando e-mail de status...")
+            assunto_email = "✅ [Status Diário] Ofertas Elo (Sem Mudanças)"
+            html_email = """
+            <html>
+            <body style="font-family: Arial, sans-serif; color: #333;">
+                <h2 style="color: #005A9C;">📊 Status Diário: Ofertas Elo</h2>
+                <p>A varredura foi concluída com sucesso. Nenhuma mudança foi detectada no portal de benefícios hoje.</p>
+                <p>A base de dados completa segue em anexo para consulta.</p>
+            </body>
+            </html>
+            """
             
     else:
-        print(f"\nPrimeira execução detectada. Criando arquivo base '{nome_arquivo}'...")
+        print(f"Primeira execução detectada. Criando arquivo base '{nome_arquivo}'...")
         df_hoje['Movimentação'] = "Novo Benefício"
+        assunto_email = "🚀 [Start Bot] Primeira Carga de Ofertas Elo"
+        html_email = """
+        <html>
+        <body style="font-family: Arial, sans-serif; color: #333;">
+            <h2 style="color: #005A9C;">🚀 Primeira Varredura: Ofertas Elo</h2>
+            <p>O robô realizou a carga inicial de dados com sucesso.</p>
+            <p>A base completa gerada segue em anexo.</p>
+        </body>
+        </html>
+        """
 
+    # --- PASSO 1: Salvar o arquivo CSV no servidor ---
     ordem_colunas = ['Categoria', 'Parceiro', 'Benefício / Oferta', 'Validade', 'Status', 'Movimentação', 'Link']
     df_hoje = df_hoje[ordem_colunas].sort_values(by="Parceiro").reset_index(drop=True)
     df_hoje.to_csv(nome_arquivo, index=False, encoding="utf-8-sig", sep=";")
-    print(f"\nSucesso! O relatório foi atualizado e salvo.")
+    print("Sucesso! O relatório foi salvo localmente.")
+
+    # --- PASSO 2: Enviar o e-mail com o arquivo que acabamos de salvar ---
+    enviar_notificacao_outlook(assunto=assunto_email, corpo_html=html_email, caminho_anexo=nome_arquivo)
 
 if __name__ == "__main__":
     monitorar_beneficios_elo()
