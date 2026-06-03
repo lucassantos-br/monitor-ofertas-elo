@@ -55,7 +55,7 @@ def extrair_validade_interna(pagina, url_completa):
 def enviar_notificacao_outlook(assunto, corpo_html):
     """Envia o e-mail de forma segura puxando a senha do ambiente"""
     email_remetente = "lucassantosdasilva697@gmail.com" # <--- ALTERE AQUI
-    email_destinatario = "lucas.santossilva@verdecard.com.br" # <--- ALTERE AQUI
+    email_destinatario = "samuel.aiedo@verdecard.com.br" # <--- ALTERE AQUI
     
     # Puxa a senha do cofre do GitHub
     senha = os.environ.get("SENHA_OUTLOOK") 
