@@ -1,4 +1,4 @@
-# 🤖 Crawler & Monitor de Benefícios — Portal Elo
+# 🤖 Crawler & Monitor de Benefícios (Site Elo)
 
 Este repositório contém um bot de automação e web scraping desenvolvido em Python para mapear, analisar e alertar sobre mudanças nas ofertas e benefícios disponíveis no portal oficial da bandeira Elo.
 
