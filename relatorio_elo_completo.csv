@@ -1,7 +1,7 @@
 ﻿Categoria;Parceiro;Benefício / Oferta;Validade;Status;Movimentação;Link
 Crédito e Débito;A Casinha;Na compra de 1 prato ganhe um café ou na compra de 2 pratos ou lanches ganhe 1 sobremesa.;31/12/2026;Vigente;Mantido;https://www.elo.com.br/ofertas/acasinha/
 Crédito;Airport Park;Ganhe 10% de desconto para estacionar no Aeroporto de Guarulhos. Resgate seu cupom agora!;31/07/2027;Vigente;Mantido;https://www.elo.com.br/ofertas/airportparkmais/
-Crédito;Alekao;Na compra de 1 Dog Alekão, ganhe 1 bebida.;31/12/2026;Vigente;Novo Benefício;https://www.elo.com.br/ofertas/alekao/
+Crédito;Alekao;Na compra de 1 Dog Alekão, ganhe 1 bebida.;31/12/2026;Vigente;Mantido;https://www.elo.com.br/ofertas/alekao/
 Crédito;Aramis;Resgate o cupom e ganhe 15% de desconto nas compras acima de R$ 600,00.;31/12/2026;Vigente;Mantido;https://www.elo.com.br/ofertas/aramis-15/
 Crédito;Aramis 1º compra;Resgate o cupom e ganhe até 22% de desconto para fazer sua primeira compra.;31/12/2026;Vigente;Mantido;https://www.elo.com.br/ofertas/aramis-20/
 Crédito;Assistência Mobilidade;Serviços de manutenção, instalação e pequenos reparos para sua empresa.;Não informada no texto padrão;Indeterminado;Mantido;https://www.elo.com.br/beneficios/auto/
@@ -63,7 +63,7 @@ Crédito;Open English;71% de desconto + 2 meses grátis na contratação do curs
 Crédito;Open English Junior;70% de desconto pagando com cartão de crédito na Open English Júnior.;30/06/2027;Vigente;Mantido;https://www.elo.com.br/ofertas/open-english-junior/
 Crédito e Débito;Pague Menos e Extra Farma;Use Elo nas redes de Farmácias Pague Menos e Extrafarma e tenha acesso a serviços gratuitos e descontos.;17/09/2026;Vigente;Mantido;https://www.elo.com.br/ofertas/paguemenosextrafarma/
 Crédito e Débito;Pague Menos e Extrafarma;Descontos a partir de 20% em medicamentos de marca e 30% em medicamentos genéricos.;31/12/2027;Vigente;Mantido;https://www.elo.com.br/ofertas/pague-menos/
-Crédito e Débito;Panvel;Descontos de até 23% em medicamentos de marca e até 40% em genéricos nas lojas físicas e compras online. Aproveite!;Não informada no texto padrão;Indeterminado;Novo Benefício;https://www.elo.com.br/ofertas/panvel/
+Crédito e Débito;Panvel;Descontos de até 23% em medicamentos de marca e até 40% em genéricos nas lojas físicas e compras online. Aproveite!;30/06/2028;Vigente;Mantido;https://www.elo.com.br/ofertas/panvel/
 Crédito;Parkstrom;50% de desconto para recarregar seu carro elétrico pagando com seu cartão Elo.;31/12/2027;Vigente;Mantido;https://www.elo.com.br/ofertas/parkstrom/
 Crédito;Passagens Rodoviárias;Utilize o cupom e garanta 15% off em suas passagens para viajar de ônibus com total conforto.;23/03/2027;Vigente;Mantido;https://www.elo.com.br/ofertas/clubegiro-15/
 Crédito;Passagens Rodoviárias;Utilize o cupom e garanta 30% off em sua primeira passagem para viajar de ônibus com total conforto.;23/03/2027;Vigente;Mantido;https://www.elo.com.br/ofertas/clubegiro-30/
@@ -73,7 +73,6 @@ Crédito;Pontos Extras Clube Livelo;Ganhe 12 mil pontos extras + 1.000 pontos me
 Crédito;Pontos Turbinados;Use seu cartão Elo Diners Club e acumule até 25 mil pontos extras.;Não informada no texto padrão;Indeterminado;Mantido;https://campanhas.elo.com.br/promocoes/gamificacao/diners-pontos-turbinados
 Crédito;Portal das Malas;Ganhe 9% de desconto no site da Portal das Malas resgatando o cupom.;23/09/2026;Vigente;Mantido;https://www.elo.com.br/ofertas/portaldasmalas/
 Crédito e Débito;Promoção Tava Escrito BB;Use seu cartão BB Elo, ganhe 1 número da sorte a cada R$ 100 em compras e concorra a prêmios todos os meses.;Não informada no texto padrão;Indeterminado;Mantido;https://campanhas.elo.com.br/promocoes/numeros-da-sorte/tavaescrito-bb
-Crédito;Puravida;Resgate o cupom e ganhe 15% de desconto em produtos que acompanham um estilo de vida leve e equilibrado.;01/09/2026;Vigente;Mantido;https://www.elo.com.br/ofertas/puravida/
 Crédito;Sala VIP;Acesso às salas VIP do Priority Pass para esperar seu voo com conforto.;Não informada no texto padrão;Indeterminado;Mantido;https://www.elo.com.br/beneficios/sala-vip/
 Crédito;Sallve;Produtos para o cuidado da pele. Resgate o cupom e ganhe R$ 20 de desconto em compras a partir de R$ 159,00.;01/09/2026;Vigente;Mantido;https://www.elo.com.br/ofertas/sallve-e-elo/
 Crédito;Sam's Club;R$ 150 de desconto e frete grátis ao assinar Sam´s Club com Elo.;01/07/2027;Vigente;Mantido;https://www.elo.com.br/ofertas/samsclub/
