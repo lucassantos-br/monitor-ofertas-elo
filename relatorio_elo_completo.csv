@@ -1,5 +1,5 @@
 ﻿Categoria;Parceiro;Benefício / Oferta;Validade;Status;Movimentação;Link
-Crédito;99 corridas;Resgate o cupom e ganhe 25% de desconto em corridas. Economize pagando com Elo.;31/12/2026;Vigente;Novo Benefício;https://www.elo.com.br/ofertas/99corridas/
+Crédito;99 corridas;Resgate o cupom e ganhe 25% de desconto em corridas. Economize pagando com Elo.;31/12/2026;Vigente;Mantido;https://www.elo.com.br/ofertas/99corridas/
 Crédito e Débito;A Casinha;Na compra de 1 prato ganhe um café ou na compra de 2 pratos ou lanches ganhe 1 sobremesa.;31/12/2026;Vigente;Mantido;https://www.elo.com.br/ofertas/acasinha/
 Crédito;Airport Park;Ganhe 10% de desconto para estacionar no Aeroporto de Guarulhos. Resgate seu cupom agora!;31/07/2027;Vigente;Mantido;https://www.elo.com.br/ofertas/airportparkmais/
 Crédito;Alekao;Na compra de 1 Dog Alekão, ganhe 1 bebida.;31/12/2026;Vigente;Mantido;https://www.elo.com.br/ofertas/alekao/
@@ -54,8 +54,8 @@ Crédito (Exclusivo Diners e Nanquim);LE LIS;Moda feminina elegante e atemporal.
 Crédito;Life by Vivara;Aproveite 15% off em toda a linha Life by Vivara. Resgate seu cupom!;07/04/2027;Vigente;Mantido;https://www.elo.com.br/ofertas/lifebyvivara/
 Crédito;Magalu;Com Elo e Magalu, suas compras ficam ainda melhores. Aproveite descontos exclusivos de até 10%.;27/05/2027;Vigente;Mantido;https://www.elo.com.br/ofertas/magalu/
 Crédito (Exclusivo Diners e Nanquim);Mondepars;10% de desconto nas compras feitas com cartão Elo.;Não informada no texto padrão;Indeterminado;Mantido;https://www.elo.com.br/campanhas/elo-moda-mondepars/
-Crédito e Débito (Exclusivo Diners e Nanquim);Movida;Use Elo e ganhe 12% de desconto nas diárias dos veículos da Movida.;30/09/2026;Vigente;Mantido;https://www.elo.com.br/ofertas/movidaar/
 Crédito e Débito;Movida;Use Elo e ganhe 12% de desconto nas diárias dos veículos da Movida;30/09/2026;Vigente;Mantido;https://www.elo.com.br/ofertas/movida/
+Crédito e Débito (Exclusivo Diners e Nanquim);Movida;Use Elo e ganhe 12% de desconto nas diárias dos veículos da Movida.;30/09/2026;Vigente;Mantido;https://www.elo.com.br/ofertas/movidaar/
 Crédito;Natura;Pague com Elo e ganhe 10% de desconto em produtos do site ou app.;31/12/2026;Vigente;Mantido;https://www.elo.com.br/ofertas/natura/
 Crédito;Netshoes.;Use Elo e ganhe 15%  de desconto no site da Netshoes;01/09/2027;Vigente;Mantido;https://www.elo.com.br/ofertas/netshoes/
 Crédito (Exclusivo Diners e Nanquim);Nino Cocina;Ganhe um tiramisú, gastando acima de R$150 pagando com Elo.;Não informada no texto padrão;Indeterminado;Mantido;https://www.elo.com.br/campanhas/elo-gastronomia-nino-cucina/
@@ -66,8 +66,8 @@ Crédito e Débito;Pague Menos e Extrafarma;Descontos a partir de 20% em medicam
 Crédito e Débito;Panvel;Descontos de até 23% em medicamentos de marca e até 40% em genéricos nas lojas físicas e compras online. Aproveite!;30/06/2028;Vigente;Mantido;https://www.elo.com.br/ofertas/panvel/
 Crédito;Parkstrom;100% de desconto para recarregar seu carro elétrico pagando com seu cartão Elo.;30/09/2026;Vigente;Mantido;https://www.elo.com.br/ofertas/parkstrom-elo/
 Crédito;Parkstrom;50% de desconto para recarregar seu carro elétrico pagando com seu cartão Elo.;31/12/2027;Vigente;Mantido;https://www.elo.com.br/ofertas/parkstrom/
-Crédito;Passagens Rodoviárias;Utilize o cupom e garanta 30% off em sua primeira passagem para viajar de ônibus com total conforto.;23/03/2027;Vigente;Mantido;https://www.elo.com.br/ofertas/clubegiro-30/
 Crédito;Passagens Rodoviárias;Utilize o cupom e garanta 15% off em suas passagens para viajar de ônibus com total conforto.;23/03/2027;Vigente;Mantido;https://www.elo.com.br/ofertas/clubegiro-15/
+Crédito;Passagens Rodoviárias;Utilize o cupom e garanta 30% off em sua primeira passagem para viajar de ônibus com total conforto.;23/03/2027;Vigente;Mantido;https://www.elo.com.br/ofertas/clubegiro-30/
 Crédito e Débito;Pasteko;Use Elo e aproveite o almoço à vontade de segunda a quinta. dE R$ 49,90 por R$ 35,90 na unidade do Pasteko em Osasco.;31/12/2026;Vigente;Mantido;https://www.elo.com.br/ofertas/pasteko/
 Crédito e Débito;Promoção Tava Escrito BB;Use seu cartão BB Elo, ganhe 1 número da sorte a cada R$ 100 em compras e concorra a prêmios todos os meses.;Não informada no texto padrão;Indeterminado;Mantido;https://campanhas.elo.com.br/promocoes/numeros-da-sorte/tavaescrito-bb
 Crédito;Sala VIP;Acesso às salas VIP do Priority Pass para esperar seu voo com conforto.;Não informada no texto padrão;Indeterminado;Mantido;https://www.elo.com.br/beneficios/sala-vip/
@@ -78,7 +78,7 @@ Crédito;Seguro Garantia Estendida;Um seguro que dobra o tempo de garantia dos p
 Crédito;Seguro Multas;Cliente Elo tem condições exclusivas e paga menos para regularizar infrações de trânsito.;31/08/2027;Vigente;Mantido;https://www.elo.com.br/ofertas/seguromultas/
 Crédito;Seguro Proteção de Compras;Suas compras sempre protegidas  em caso de dano, roubo ou furto;Não informada no texto padrão;Indeterminado;Mantido;https://www.elo.com.br/beneficios/seguro-protecao-compras/
 Crédito;Seguro Viagem;Tenha mais tranquilidade nas suas viagens pelo Brasil ou exterior;Não informada no texto padrão;Indeterminado;Mantido;https://www.elo.com.br/beneficios/seguro-viagem/
-Crédito;Semana do Cliente - Shopee;Use o cupom e ganhe R$25 de desconto em compras acima de R$200.;Não informada no texto padrão;Indeterminado;Novo Benefício;https://www.elo.com.br/ofertas/semana-shopee/
+Crédito;Semana do Cliente - Shopee;Use o cupom e ganhe R$25 de desconto em compras acima de R$200.;Não informada no texto padrão;Indeterminado;Mantido;https://www.elo.com.br/ofertas/semana-shopee/
 Crédito;Shopclub;Use Elo crédito e tenha 5% de desconto para compras no site da Loja Shopclub.;31/10/2026;Vigente;Mantido;https://www.elo.com.br/ofertas/shopclub/
 Crédito;Televets;Pague apenas R$7,90 em consultas para até 3 pets.;10/10/2026;Vigente;Mantido;https://www.elo.com.br/ofertas/televets/
 Crédito;Thrifty;Desconto de 12% à vista para alugar um carro no exterior ou 11% pagando em de 2x a 10x sem juros.;31/08/2027;Vigente;Mantido;https://www.elo.com.br/ofertas/thrifty/
